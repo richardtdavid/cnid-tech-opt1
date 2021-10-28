@@ -1,19 +1,23 @@
 import { useQuery } from "react-query";
 import { NewsFeed, NewsFeedOptions } from "./utils/news.feed";
 import { formatDateWithTimeZone } from "./utils/dateFormatter";
-import { Wrapper } from "./app.styles";
+import { useStyles } from "./app.styles";
 import { useState } from "react";
+
+import { Header } from "./components/header/header.component";
+import { Feed } from "./components/feed/feed.component";
+import { Grid } from "@material-ui/core";
 
 const App = () => {
   const newsfeed = new NewsFeed();
 
-  const [articles, setArticles] = useState({
+  const [articles] = useState({
     q: "apple",
     from: formatDateWithTimeZone(),
     sortBy: "popularity",
   } as NewsFeedOptions);
 
-  const [headlines, setHeadlines] = useState({
+  const [headlines] = useState({
     sources: "bbc-news",
   } as NewsFeedOptions);
 
@@ -29,10 +33,27 @@ const App = () => {
     newsfeed.getTopHeadlineArticles(headlines)
   );
 
+  const { root, app } = useStyles();
   return (
-    <Wrapper>
-      <div className="App">Test: {JSON.stringify(headlineData)}</div>
-    </Wrapper>
+    <div className={root}>
+      <Header />
+      <div className={app}>
+        <Grid
+          container
+          spacing={0}
+          direction="column"
+          alignItems="center"
+          justifyContent="center"
+          style={{ minHeight: "100vh" }}
+        >
+          <Grid item lg={6}>
+            {headlineData?.map((article) => (
+              <Feed key={article?.publishedAt} {...article} />
+            ))}
+          </Grid>
+        </Grid>
+      </div>
+    </div>
   );
 };
 
