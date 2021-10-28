@@ -34,13 +34,11 @@ export const Feed = ({ title, urlToImage, description, content }: Articles) => {
         {content
           ?.split(",")
           .slice(0, 5)
-          ?.map((sentence: string) => {
-            return (
-              <ul className={bullet} key={urlToImage + sentence}>
-                <li>{sentence}</li>
-              </ul>
-            );
-          })}
+          ?.map((sentence: string) => (
+            <ul className={bullet} key={urlToImage + sentence}>
+              <li>{sentence}</li>
+            </ul>
+          ))}
       </CardContent>
       <Divider className={divider} light />
       <Button className={button} size="small" color="primary">

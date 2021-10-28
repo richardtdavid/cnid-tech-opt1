@@ -4,6 +4,7 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 
+import { Filter } from "../filter/filter.component";
 import { useStyles } from "./header.styles";
 
 export const Header = () => {
@@ -23,6 +24,7 @@ export const Header = () => {
           <Typography variant="h6" className={title} noWrap>
             CNID News
           </Typography>
+          <Filter />
         </Toolbar>
       </AppBar>
       <Toolbar />
