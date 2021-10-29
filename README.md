@@ -1,6 +1,6 @@
 # cnid-tech-opt1
 
-This project contains a front & backend for fetching news data across the globe using the [NewsAPI](https://newsapi.org/) service.
+This project contains a frontend & backend for fetching news data across the globe using the [NewsAPI](https://newsapi.org/) service.
 
 **Note**: `An API-KEY is needed in order for the backend service to fetch data`
 
