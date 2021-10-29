@@ -29,7 +29,7 @@ export class NewsFeed {
   ): Promise<Articles[] | never[]> {
     try {
       const results = await this.httpService.post(
-        `${this.BASE_URL}/everything`,
+        `${this.BASE_URL}/headlines`,
         options
       );
       if (results?.data.length > 0) {

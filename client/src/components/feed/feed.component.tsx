@@ -6,8 +6,15 @@ import Button from "@material-ui/core/Button";
 import { useStyles } from "./feed.styles";
 import { Articles } from "../../utils/news.feed";
 import { Divider } from "@material-ui/core";
+import shortid from "shortid";
 
-export const Feed = ({ title, urlToImage, description, content }: Articles) => {
+export const Feed = ({
+  title,
+  urlToImage,
+  description,
+  content,
+  url,
+}: Articles) => {
   const { media, root, divider, avatar, bullet, button } = useStyles();
 
   return (
@@ -15,7 +22,7 @@ export const Feed = ({ title, urlToImage, description, content }: Articles) => {
       <CardContent className={media}>
         <Avatar
           className={avatar}
-          key={urlToImage}
+          key={shortid.generate()}
           src={urlToImage}
           sizes="large"
           variant="square"
@@ -33,15 +40,20 @@ export const Feed = ({ title, urlToImage, description, content }: Articles) => {
 
         {content
           ?.split(",")
-          .slice(0, 5)
+          .slice(0, 3)
           ?.map((sentence: string) => (
-            <ul className={bullet} key={urlToImage + sentence}>
+            <ul className={bullet} key={shortid.generate()}>
               <li>{sentence}</li>
             </ul>
           ))}
       </CardContent>
       <Divider className={divider} light />
-      <Button className={button} size="small" color="primary">
+      <Button
+        className={button}
+        size="small"
+        color="primary"
+        onClick={() => window.open(url, "_blank")}
+      >
         View Full Coverage
       </Button>
     </Card>
